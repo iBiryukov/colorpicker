@@ -71,7 +71,8 @@ $.widget( "evol.colorpicker", {
 		showOn: 'both', // possible values 'focus','button','both'
 		displayIndicator: true,
 		history: true,
-		strings: 'Theme Colors,Standard Colors,More Colors,Less Colors,Back to Palette,History,No history yet.'
+		strings: 'Theme Colors,Standard Colors,More Colors,Less Colors,Back to Palette,History,No history yet.',
+		hideInput: false
 	},
 
 	_create: function() {
@@ -94,7 +95,8 @@ $.widget( "evol.colorpicker", {
 					}
 				}
 				e.addClass('colorPicker '+this._id)
-					.wrap('<div style="width:'+(this.element.width()+32)+'px;'
+					.wrap('<div  style="'
+						.wrap('<div class="colorPickerWrapper" style="'
 						+(isIE?'margin-bottom:-21px;':'')
 						+(isMoz?'padding:1px 0;':'')
 						+'"></div>')
@@ -118,6 +120,10 @@ $.widget( "evol.colorpicker", {
 						that.showPalette();
 					});
 				}
+				if(this.options.hideInput) {
+					e.hide().parent();
+				}
+
 				break;
 			default:
 				this._isPopup=false;
